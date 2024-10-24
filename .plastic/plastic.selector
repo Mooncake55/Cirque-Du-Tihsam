@@ -1,0 +1,4 @@
+repository "Spooky Game@Cafecita@cloud"
+  path "/"
+    br "/main"
+    co "/main"
