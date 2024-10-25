@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float _moveSpeed = 2f;
+    private float actualSpeed;
+    private float moveSpeed = 1.2f;
+    private float runSpeed = 1.8f;
+    public float jumpForce = 1.5f;
     private Rigidbody2D _rb;
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
@@ -15,43 +18,43 @@ public class PlayerController : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        actualSpeed = moveSpeed;
     }
 
     // Update is called once per frame
 
     private void Update()
     {
-
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            _moveSpeed = 5;
+            
+            actualSpeed = runSpeed;
         }
         else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
-            _moveSpeed = 2f;
+            actualSpeed = moveSpeed;
+        }
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            Jump();
         }
     }
     void FixedUpdate()
     {
-        Movement();
-        Animations();
-        Flip();
+    Movement();
+    Animations();
+    Flip();
     }
     void Movement()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
-
-        Vector3 moveInput = new Vector3(horizontalInput, verticalInput, 0);
-
-        Vector3 nextPosition = transform.position + moveInput * Time.deltaTime * _moveSpeed;
-        _rb.MovePosition(nextPosition);
+        float moveInput = Input.GetAxis("Horizontal");
+        _rb.velocity = new Vector2(moveInput * actualSpeed, _rb.velocity.y);
     }
     void Animations()
     {
         float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
-        if (horizontal != 0 || vertical != 0)
+        if (horizontal != 0)
         {
             _animator.SetFloat("Speed", 1);
         }
@@ -71,6 +74,13 @@ public class PlayerController : MonoBehaviour
         else if (horizontal < 0)
         {
             _spriteRenderer.flipX = true;
+        }
+    }
+    void Jump()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            _rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
     }
 }
