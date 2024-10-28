@@ -8,9 +8,26 @@ public class PlayerController : MonoBehaviour
     private float moveSpeed = 1.2f;
     private float runSpeed = 1.8f;
     public float jumpForce = 1.5f;
+    float moveInput;
+
+
     private Rigidbody2D _rb;
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
+    
+    private bool _onGround;
+    private bool _jump;
+    public LayerMask ground;
+    [SerializeField]
+    private float _longRaycast = 0.1f;
+
+
+    private string _currentState;
+    const string PLAYER_JUMP = "JumpClown";
+    const string PLAYER_WALK = "walkClown";
+    const string PLAYER_IDLE = "IdleClown";
+
+
 
     // Start is called before the first frame update
     void Awake()
@@ -25,9 +42,10 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        CalculateOnGround();
+
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            
             actualSpeed = runSpeed;
         }
         else if (Input.GetKeyUp(KeyCode.LeftShift))
@@ -35,34 +53,24 @@ public class PlayerController : MonoBehaviour
             actualSpeed = moveSpeed;
         }
 
-        if (Input.GetKey(KeyCode.Space))
+        if (_onGround && Input.GetKey(KeyCode.Space))
         {
             Jump();
+            _jump = true;
         }
     }
     void FixedUpdate()
     {
     Movement();
-    Animations();
     Flip();
+    Animations();
     }
-    void Movement()
+    public void Movement()
     {
-        float moveInput = Input.GetAxis("Horizontal");
+        moveInput = Input.GetAxis("Horizontal");
         _rb.velocity = new Vector2(moveInput * actualSpeed, _rb.velocity.y);
     }
-    void Animations()
-    {
-        float horizontal = Input.GetAxis("Horizontal");
-        if (horizontal != 0)
-        {
-            _animator.SetFloat("Speed", 1);
-        }
-        else
-        {
-            _animator.SetFloat("Speed", 0);
-        }
-    }
+
     void Flip()
     {
         //Gira el Sprite del personaje hacia apriete el jugador(izquierda o derecha)
@@ -76,11 +84,45 @@ public class PlayerController : MonoBehaviour
             _spriteRenderer.flipX = true;
         }
     }
-    void Jump()
+    private void Jump()
+    { 
+        _rb.velocity = new Vector2(_rb.velocity.x, jumpForce);
+    }
+    private void CalculateOnGround()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, _longRaycast, ground); 
+        _onGround = hit.collider != null;
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(transform.position, transform.position + Vector3.down * _longRaycast);
+    }
+    public void ChangeAnimationState(string newState)
+    {
+        if (_currentState == newState) return;
+
+        _animator.Play(newState);
+        _currentState = newState;
+    }
+    private void Animations()
+    {
+        if (_onGround == true)
         {
-            _rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            if (moveInput != 0)
+            {
+                ChangeAnimationState(PLAYER_WALK);
+            }
+            else
+            {
+                ChangeAnimationState(PLAYER_IDLE);
+            }
+        }
+        if (_jump == true && _onGround == false)
+        {
+            ChangeAnimationState(PLAYER_JUMP);
+            _jump = false;
         }
     }
 }
+
