@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 55882af88f14a0c42b6d706bf3d3fd27
+guid: 8d22bda0ca48ad440a04ee4faf7e7e77
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -50,7 +50,7 @@ TextureImporter:
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 0
+  spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Clown Jump 32X32_0
+      name: Clown Jump 31x40_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 37
-        height: 38
+        width: 31
+        height: 40
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,20 +111,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4baf4788fe12c474fb183ed5544dbac8
-      internalID: -71696139
+      spriteID: 711c87c98720f5a4aab30833d211caf6
+      internalID: -1394342828
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Clown Jump 32X32_1
+      name: Clown Jump 31x40_1
       rect:
         serializedVersion: 2
-        x: 37
+        x: 31
         y: 0
-        width: 37
-        height: 38
+        width: 31
+        height: 40
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,20 +132,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 11c0a8b6434802946a8ee56fecd8281d
-      internalID: 208546713
+      spriteID: c34794ccc514d114aa8ee6cca6fe91ac
+      internalID: 1752255256
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Clown Jump 32X32_2
+      name: Clown Jump 31x40_2
       rect:
         serializedVersion: 2
-        x: 74
+        x: 62
         y: 0
-        width: 37
-        height: 38
+        width: 31
+        height: 40
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,20 +153,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5bf87a25f89da3a449bc7acaacaeee91
-      internalID: -1045267520
+      spriteID: 9e141b0e41b99e94f81a169259ad1978
+      internalID: 1730664655
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Clown Jump 32X32_3
+      name: Clown Jump 31x40_3
       rect:
         serializedVersion: 2
-        x: 111
+        x: 93
         y: 0
-        width: 37
-        height: 38
+        width: 31
+        height: 40
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,20 +174,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bbaa2d1ec305f63489d0db4a48016eb4
-      internalID: -1235188745
+      spriteID: d3ec78d0b7a61f14c9b622f0ac1a0a8f
+      internalID: -2004998556
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Clown Jump 32X32_4
+      name: Clown Jump 31x40_4
       rect:
         serializedVersion: 2
-        x: 148
+        x: 124
         y: 0
-        width: 37
-        height: 38
+        width: 31
+        height: 40
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,20 +195,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2040f5b5a809c8542a06b13e82f5b636
-      internalID: 1339012706
+      spriteID: aa7f74f36ff119d48aa31dd95e615b7b
+      internalID: 1716018201
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Clown Jump 32X32_5
+      name: Clown Jump 31x40_5
       rect:
         serializedVersion: 2
-        x: 185
+        x: 155
         y: 0
-        width: 37
-        height: 38
+        width: 31
+        height: 40
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -216,20 +216,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a64f22b4b34680b4db6b8dd832b0c74e
-      internalID: -2111109509
+      spriteID: 8a09085744e777b41b1ca6e0ca21b4be
+      internalID: 1561858085
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Clown Jump 32X32_6
+      name: Clown Jump 31x40_6
       rect:
         serializedVersion: 2
-        x: 222
+        x: 186
         y: 0
-        width: 37
-        height: 38
+        width: 31
+        height: 40
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -237,20 +237,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d99b846be310bde4d86a33b959b51aaa
-      internalID: 602333707
+      spriteID: 99b67111e0d535842ac38a32f86a9e1e
+      internalID: 855715334
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Clown Jump 32X32_7
+      name: Clown Jump 31x40_7
       rect:
         serializedVersion: 2
-        x: 259
+        x: 217
         y: 0
-        width: 37
-        height: 38
+        width: 31
+        height: 40
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -258,20 +258,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2c3105cbb6b6e9c4f8bff6ab7ae93c0f
-      internalID: -1944626451
+      spriteID: 326cbfb4244a0174f82af1637a2cefb9
+      internalID: 1057831761
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Clown Jump 32X32_8
+      name: Clown Jump 31x40_8
       rect:
         serializedVersion: 2
-        x: 296
+        x: 248
         y: 0
-        width: 37
-        height: 38
+        width: 31
+        height: 40
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -279,8 +279,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2882074431788044e83fe7fe376f2a4b
-      internalID: 2085364812
+      spriteID: f8153ed09f79fb7409bc457cfa420651
+      internalID: 1695615061
       vertices: []
       indices: 
       edges: []
@@ -296,15 +296,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Clown Jump 32X32_0: -71696139
-      Clown Jump 32X32_1: 208546713
-      Clown Jump 32X32_2: -1045267520
-      Clown Jump 32X32_3: -1235188745
-      Clown Jump 32X32_4: 1339012706
-      Clown Jump 32X32_5: -2111109509
-      Clown Jump 32X32_6: 602333707
-      Clown Jump 32X32_7: -1944626451
-      Clown Jump 32X32_8: 2085364812
+      Clown Jump 31x40_0: -1394342828
+      Clown Jump 31x40_1: 1752255256
+      Clown Jump 31x40_2: 1730664655
+      Clown Jump 31x40_3: -2004998556
+      Clown Jump 31x40_4: 1716018201
+      Clown Jump 31x40_5: 1561858085
+      Clown Jump 31x40_6: 855715334
+      Clown Jump 31x40_7: 1057831761
+      Clown Jump 31x40_8: 1695615061
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

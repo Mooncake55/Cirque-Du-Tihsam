@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField]
     private float actualSpeed;
-    private float moveSpeed = 1.2f;
-    private float runSpeed = 1.8f;
+    public float moveSpeed = 1.2f;
+    public float runSpeed = 1.8f;
     public float jumpForce = 1.5f;
     float moveInput;
 
@@ -17,17 +18,16 @@ public class PlayerController : MonoBehaviour
     
     private bool _onGround;
     private bool _jump;
+    private float _jumpVelocity;
     public LayerMask ground;
     [SerializeField]
     private float _longRaycast = 0.1f;
 
-
     private string _currentState;
     const string PLAYER_JUMP = "JumpClown";
-    const string PLAYER_WALK = "walkClown";
+    const string PLAYER_WALK = "WalkClown";
     const string PLAYER_IDLE = "IdleClown";
-
-
+    const string PLAYER_FALL = "FallClown";
 
     // Start is called before the first frame update
     void Awake()
@@ -64,6 +64,7 @@ public class PlayerController : MonoBehaviour
     Movement();
     Flip();
     Animations();
+    CalculateFalling();
     }
     public void Movement()
     {
@@ -88,6 +89,11 @@ public class PlayerController : MonoBehaviour
     { 
         _rb.velocity = new Vector2(_rb.velocity.x, jumpForce);
     }
+    private void CalculateFalling() 
+    {
+        _jumpVelocity = _rb.velocity.y;
+    }
+
     private void CalculateOnGround()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, _longRaycast, ground); 
@@ -117,12 +123,24 @@ public class PlayerController : MonoBehaviour
             {
                 ChangeAnimationState(PLAYER_IDLE);
             }
+
+
         }
-        if (_jump == true && _onGround == false)
+        if (_onGround == false)
         {
-            ChangeAnimationState(PLAYER_JUMP);
-            _jump = false;
+
+            if (_jump == true && _jumpVelocity > 0)
+            {
+                ChangeAnimationState(PLAYER_JUMP);
+                _jump = false;
+                
+            }
+            if (_jumpVelocity < 0)
+            {
+                ChangeAnimationState(PLAYER_FALL);
+            }
         }
+
     }
 }
 
