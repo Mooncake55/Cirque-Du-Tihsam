@@ -92,8 +92,7 @@ public class PlayerController : MonoBehaviour
     private void CalculateFalling() 
     {
         _jumpVelocity = _rb.velocity.y;
-    }
-
+    }   
     private void CalculateOnGround()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, _longRaycast, ground); 
@@ -123,8 +122,6 @@ public class PlayerController : MonoBehaviour
             {
                 ChangeAnimationState(PLAYER_IDLE);
             }
-
-
         }
         if (_onGround == false)
         {
