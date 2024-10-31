@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public float runSpeed = 1.8f;
     public float jumpForce = 1.5f;
     float moveInput;
+    private float _lastXMovementInput;
 
 
     private Rigidbody2D _rb;
@@ -61,15 +62,22 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
-    Movement();
-    Flip();
-    Animations();
-    CalculateFalling();
+        Movement();
+        Flip();
+        Animations();
+        CalculateFalling();
     }
     public void Movement()
     {
         moveInput = Input.GetAxis("Horizontal");
+
+        if(_lastXMovementInput > Mathf.Abs(moveInput))
+        {
+            moveInput = 0;
+        }
+
         _rb.velocity = new Vector2(moveInput * actualSpeed, _rb.velocity.y);
+        _lastXMovementInput = moveInput;
     }
 
     void Flip()

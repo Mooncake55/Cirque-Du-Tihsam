@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class Bloon : MonoBehaviour
 {
-    public PlayerInventory inventory;
+    private PlayerInventory _inventory;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void OnTriggerEnter2D(Collider2D col)
     {
+        _inventory = col.gameObject.GetComponent<PlayerInventory>();
+        if (_inventory == null)
+        {
+            Debug.LogError("INVENTORY NULL");
+            return;
+        }
         if (col.CompareTag("Player"))
         {
-            inventory.bloonInventory++;
+            _inventory.bloonInventory++;
             Destroy(this.gameObject);
         }
     }
