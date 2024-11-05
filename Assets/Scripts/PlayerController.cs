@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -9,9 +10,11 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 1.2f;
     public float runSpeed = 1.8f;
     public float jumpForce = 1.5f;
-    float moveInput;
-    private float _lastXMovementInput;
-
+    [SerializeField]
+    private float _moveInput;
+    [SerializeField]
+    private float _smoothMovement;
+    Vector2 _lastMove = Vector2.zero;
 
     private Rigidbody2D _rb;
     private Animator _animator;
@@ -65,19 +68,19 @@ public class PlayerController : MonoBehaviour
         Movement();
         Flip();
         Animations();
-        CalculateFalling();
     }
     public void Movement()
     {
-        moveInput = Input.GetAxis("Horizontal");
+        _moveInput = Input.GetAxis("Horizontal");
 
-        if(_lastXMovementInput > Mathf.Abs(moveInput))
-        {
-            moveInput = 0;
-        }
+       // if(_lastXMovementInput > Mathf.Abs(moveInput))
+        //{
+          //  moveInput = 0;
+        //}
+        Vector2 objetiveVelocity = new Vector2(_moveInput * actualSpeed, _rb.velocity.y);
+        _rb.velocity = Vector2.SmoothDamp(_rb.velocity, objetiveVelocity, ref _lastMove, _smoothMovement);
 
-        _rb.velocity = new Vector2(moveInput * actualSpeed, _rb.velocity.y);
-        _lastXMovementInput = moveInput;
+        _jumpVelocity = _rb.velocity.y;
     }
 
     void Flip()
@@ -96,11 +99,8 @@ public class PlayerController : MonoBehaviour
     private void Jump()
     { 
         _rb.velocity = new Vector2(_rb.velocity.x, jumpForce);
+        
     }
-    private void CalculateFalling() 
-    {
-        _jumpVelocity = _rb.velocity.y;
-    }   
     private void CalculateOnGround()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, _longRaycast, ground); 
@@ -122,7 +122,7 @@ public class PlayerController : MonoBehaviour
     {
         if (_onGround == true)
         {
-            if (moveInput != 0)
+            if (_moveInput > 0.1f || _moveInput < - 0.1f)
             {
                 ChangeAnimationState(PLAYER_WALK);
             }
@@ -133,7 +133,6 @@ public class PlayerController : MonoBehaviour
         }
         if (_onGround == false)
         {
-
             if (_jump == true && _jumpVelocity > 0)
             {
                 ChangeAnimationState(PLAYER_JUMP);
@@ -145,7 +144,6 @@ public class PlayerController : MonoBehaviour
                 ChangeAnimationState(PLAYER_FALL);
             }
         }
-
     }
 }
 
