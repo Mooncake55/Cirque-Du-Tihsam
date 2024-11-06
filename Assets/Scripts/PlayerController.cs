@@ -1,6 +1,8 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -36,6 +38,10 @@ public class PlayerController : MonoBehaviour
     const string PLAYER_WALK = "WalkClown";
     const string PLAYER_IDLE = "IdleClown";
     const string PLAYER_FALL = "FallClown";
+
+    private CinemachineVirtualCamera _virtualCamera;
+    [SerializeField]
+    private float _lookAheadTime;
 
     // Start is called before the first frame update
     void Awake()
