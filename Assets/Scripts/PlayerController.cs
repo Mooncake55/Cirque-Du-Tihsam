@@ -25,7 +25,11 @@ public class PlayerController : MonoBehaviour
     private float _jumpVelocity;
     public LayerMask ground;
     [SerializeField]
-    private float _longRaycast = 0.1f;
+    private float _longRaycast = 0.1f; 
+    [SerializeField]
+    private float _originRaycast2 = 0.05f;
+    [SerializeField]
+    private float _originRaycast3 = 0.05f;
 
     private string _currentState;
     const string PLAYER_JUMP = "JumpClown";
@@ -103,13 +107,22 @@ public class PlayerController : MonoBehaviour
     }
     private void CalculateOnGround()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, _longRaycast, ground); 
-        _onGround = hit.collider != null;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, _longRaycast, ground);
+        RaycastHit2D hit2 = Physics2D.Raycast(new Vector2(transform.position.x - _originRaycast2, transform.position.y), Vector2.down, _longRaycast, ground);
+        RaycastHit2D hit3 = Physics2D.Raycast(new Vector2(transform.position.x - _originRaycast3, transform.position.y), Vector2.down, _longRaycast, ground);
+        if (hit.collider != null || hit2.collider != null || hit3.collider != null)
+        {
+            _onGround = true;
+        }
+        else { _onGround = false; }
     }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawLine(transform.position, transform.position + Vector3.down * _longRaycast);
+        Gizmos.DrawLine(new Vector3(transform.position.x - _originRaycast2, transform.position.y, 0), new Vector3(transform.position.x - _originRaycast2, transform.position.y, 0) + Vector3.down * _longRaycast);
+        Gizmos.DrawLine(new Vector3(transform.position.x - _originRaycast3, transform.position.y, 0), new Vector3(transform.position.x - _originRaycast3, transform.position.y, 0) + Vector3.down * _longRaycast);
+
     }
     public void ChangeAnimationState(string newState)
     {
