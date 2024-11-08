@@ -10,6 +10,9 @@ public class DoorFunction : MonoBehaviour
     private Collider2D _collider;
     public Collider2D colliderTrigger;
     private SpriteRenderer _spriteRenderer;
+    [SerializeField]
+    private Sprite _otherImage;
+    private GameObject _light;
 
     private string _onInventoryKeyName;
     private string _correctKey;
@@ -21,12 +24,15 @@ public class DoorFunction : MonoBehaviour
         _correctKey = _keysData.key_name;
         _collider = GetComponent<Collider2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _light = transform.GetChild(0).gameObject;
     }
     private void Open_Door() 
     {
         _collider.enabled = false;
-        _spriteRenderer.enabled = false;
+        _spriteRenderer.sprite = _otherImage;
         _doorOpened = true;
+        transform.position = new Vector2(transform.position.x + 0.04f, transform.position.y);
+        _light.transform.position = new Vector2(transform.position.x - 0.04f, transform.position.y);
     }
     private void OnTriggerEnter2D(Collider2D col)
     {
