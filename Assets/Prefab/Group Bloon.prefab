@@ -155,7 +155,6 @@ GameObject:
   - component: {fileID: 5533695345705309405}
   - component: {fileID: 583625579338253475}
   - component: {fileID: 6559343432110409240}
-  - component: {fileID: 9026258311588809163}
   m_Layer: 0
   m_Name: Bloon
   m_TagString: Untagged
@@ -270,6 +269,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7ff834f1d10fad499419b61e58ef443, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  posA: {fileID: 4981396183742397143}
+  posB: {fileID: 4941051439971273564}
+  speed: 0.0003
 --- !u!70 &583625579338253475
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -326,21 +328,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &9026258311588809163
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5429478907671034936}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df52ac71e2900e0488eb7118889e2457, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  posA: {fileID: 4981396183742397143}
-  posB: {fileID: 4941051439971273564}
-  speed: 0.0003
 --- !u!1 &5609484633554939133
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,6 +5,20 @@ using UnityEngine;
 public class Bloon : MonoBehaviour
 {
     private PlayerInventory _inventory;
+    private GameObject _bloon;
+    private MovingPlataform _movingPlataform;
+    public Transform posA, posB;
+    public float speed;
+    Vector2 targetPos;
+    private void Start()
+    {
+        _bloon = gameObject;
+        targetPos = posB.position;
+    }
+    private void FixedUpdate()
+    {
+        MoveTo();
+    }
 
     public void OnTriggerEnter2D(Collider2D col)
     {
@@ -17,7 +31,13 @@ public class Bloon : MonoBehaviour
         if (col.CompareTag("Player"))
         {
             _inventory.bloonInventory++;
-            Destroy(this.gameObject);
+            Destroy(_bloon);
         }
+    }
+    public void MoveTo()
+    {
+        if (Vector2.Distance(transform.position, posA.position) < .1f) targetPos = posB.position;
+        if (Vector2.Distance(transform.position, posB.position) < .1f) targetPos = posA.position;
+        transform.position = Vector2.MoveTowards(transform.position, targetPos, speed);
     }
 }

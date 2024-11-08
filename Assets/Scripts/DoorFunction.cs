@@ -45,7 +45,6 @@ public class DoorFunction : MonoBehaviour
                 Debug.LogError("INVENTORY NULL");
                 return;
             }
-
             foreach (string keys in _inventory.keysInventory)
             {
                 if (keys == _correctKey)
@@ -57,7 +56,6 @@ public class DoorFunction : MonoBehaviour
                 {
                     Debug.Log("You dont have the correct key, you cannot open this door");
                 }
-
             }
             if (_doorOpened == true)
             {
@@ -65,5 +63,4 @@ public class DoorFunction : MonoBehaviour
             }
         }
     }
-
 }

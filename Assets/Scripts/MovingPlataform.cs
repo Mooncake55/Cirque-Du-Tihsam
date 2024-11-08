@@ -15,9 +15,7 @@ public class MovingPlataform : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Vector2.Distance(transform.position, posA.position) < .1f) targetPos = posB.position;
-        if (Vector2.Distance(transform.position, posB.position) < .1f) targetPos = posA.position;
-        transform.position = Vector2.MoveTowards(transform.position, targetPos, speed);
+        MoveTo();
     }
     private void OnTriggerEnter2D(Collider2D col)
     {
@@ -32,5 +30,11 @@ public class MovingPlataform : MonoBehaviour
         {
             col.transform.SetParent(null);
         }
+    }
+    public void MoveTo()
+    {
+        if (Vector2.Distance(transform.position, posA.position) < .1f) targetPos = posB.position;
+        if (Vector2.Distance(transform.position, posB.position) < .1f) targetPos = posA.position;
+        transform.position = Vector2.MoveTowards(transform.position, targetPos, speed);
     }
 }
