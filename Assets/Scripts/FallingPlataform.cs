@@ -22,8 +22,7 @@ public class FallingPlataform : MonoBehaviour
     {
         if (col.CompareTag("Player") && _regen == false)
         {
-            StartCoroutine(DesapearPlatadorm());
-            
+            StartCoroutine(DesapearPlataform());           
         }
     }
     private IEnumerator RegenPlataform()
@@ -34,7 +33,7 @@ public class FallingPlataform : MonoBehaviour
         Collider.enabled = true;
         ColliderTrigger.enabled = true;
     }
-    private IEnumerator DesapearPlatadorm()
+    private IEnumerator DesapearPlataform()
     {
         yield return new WaitForSeconds(desapearWaitingTime);            
         SpriteRenderer.enabled = false;

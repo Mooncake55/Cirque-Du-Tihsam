@@ -8,6 +8,7 @@ public class DoorFunction : MonoBehaviour
     public KeysData _keysData;
     private PlayerInventory _inventory;
     private Collider2D _collider;
+    public Collider2D colliderTrigger;
     private SpriteRenderer _spriteRenderer;
 
     private string _onInventoryKeyName;
