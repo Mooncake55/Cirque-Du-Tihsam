@@ -152,8 +152,8 @@ GameObject:
   - component: {fileID: 1137414261850554710}
   - component: {fileID: 3484552574946877653}
   - component: {fileID: 1594320652126147532}
-  - component: {fileID: 5533695345705309405}
   - component: {fileID: 583625579338253475}
+  - component: {fileID: 5533695345705309405}
   - component: {fileID: 6559343432110409240}
   m_Layer: 0
   m_Name: Bloon
@@ -257,21 +257,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &5533695345705309405
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5429478907671034936}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7ff834f1d10fad499419b61e58ef443, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  posA: {fileID: 4981396183742397143}
-  posB: {fileID: 4941051439971273564}
-  speed: 0.0003
 --- !u!70 &583625579338253475
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -307,6 +292,21 @@ CapsuleCollider2D:
   m_Offset: {x: -0.0071176887, y: -0.030704498}
   m_Size: {x: 0.113659024, y: 0.3052621}
   m_Direction: 0
+--- !u!114 &5533695345705309405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5429478907671034936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7ff834f1d10fad499419b61e58ef443, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  posA: {fileID: 4981396183742397143}
+  posB: {fileID: 4941051439971273564}
+  speed: 0.0003
 --- !u!95 &6559343432110409240
 Animator:
   serializedVersion: 5

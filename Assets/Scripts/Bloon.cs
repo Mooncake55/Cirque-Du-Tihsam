@@ -10,10 +10,18 @@ public class Bloon : MonoBehaviour
     public Transform posA, posB;
     public float speed;
     Vector2 targetPos;
+
+    private Collider2D _collider;
+    private SpriteRenderer _spriteRenderer;
+    private GameObject _light;
     private void Start()
     {
         _bloon = gameObject;
         targetPos = posB.position;
+
+        _light = transform.GetChild(0).gameObject;
+        _collider = GetComponent<Collider2D>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
     private void FixedUpdate()
     {
@@ -31,7 +39,9 @@ public class Bloon : MonoBehaviour
         if (col.CompareTag("Player"))
         {
             _inventory.bloonInventory++;
-            Destroy(_bloon);
+            _collider.enabled = false;
+            _spriteRenderer.enabled = false;
+            Destroy(_light);
         }
     }
     public void MoveTo()

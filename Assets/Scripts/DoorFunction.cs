@@ -31,7 +31,7 @@ public class DoorFunction : MonoBehaviour
         _collider.enabled = false;
         _spriteRenderer.sprite = _otherImage;
         _doorOpened = true;
-        transform.position = new Vector2(transform.position.x + 0.04f, transform.position.y);
+        transform.position = new Vector3(transform.position.x + 0.04f, transform.position.y, transform.position.z);
         _light.transform.position = new Vector2(transform.position.x - 0.04f, transform.position.y);
     }
     private void OnTriggerEnter2D(Collider2D col)
