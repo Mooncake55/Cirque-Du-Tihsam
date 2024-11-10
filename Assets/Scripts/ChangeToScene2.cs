@@ -7,7 +7,12 @@ public class ChangeToScene2 : MonoBehaviour
 {
     public int timeChange;
     public int index;
+    private ChangeScene _changeScene;
 
+    private void Start()
+    {
+        _changeScene = GetComponent<ChangeScene>();
+    }
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.CompareTag("Player"))
@@ -20,10 +25,6 @@ public class ChangeToScene2 : MonoBehaviour
     {
         yield return new WaitForSeconds(timeChange);
 
-        ChangeLevel(index);
-    }
-    public void ChangeLevel(int index)
-    {
-        SceneManager.LoadScene(index);
+        _changeScene.ChangeLevel(index);
     }
 }

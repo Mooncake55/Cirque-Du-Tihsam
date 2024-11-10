@@ -43,6 +43,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float _lookAheadTime;
 
+    //public PauseMenu pauseMenu;
+    //private bool _pause;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -66,12 +69,20 @@ public class PlayerController : MonoBehaviour
         {
             actualSpeed = moveSpeed;
         }
-
         if (_onGround && Input.GetKey(KeyCode.Space))
         {
             Jump();
             _jump = true;
         }
+        //if (Input.GetKeyDown(KeyCode.Escape) && _pause == false)
+        //{
+        //    pauseMenu.Pause();
+        //    _pause = true;
+        //} else if(Input.GetKeyDown(KeyCode.H) && _pause == true)
+        //{
+        //    pauseMenu.Resume();
+        //    _pause = false;
+        //}
     }
     void FixedUpdate()
     {
