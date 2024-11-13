@@ -15,7 +15,7 @@ TagManager:
   - 
   - Ground
   - Light
-  - 
+  - Enemies
   - Player
   - 
   - 
@@ -49,6 +49,9 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Enemies
+    uniqueID: 878295109
     locked: 0
   - name: Player
     uniqueID: 1039069331
