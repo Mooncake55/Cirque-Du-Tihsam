@@ -5,9 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class ChangeToScene2 : MonoBehaviour
 {
-    public int timeChange;
+    public float timeChange;
     public int index;
     private ChangeScene _changeScene;
+    public GameObject grid;
+    public float timeDestroyGrid;
+    public GameObject lights;
 
     private void Start()
     {
@@ -17,6 +20,7 @@ public class ChangeToScene2 : MonoBehaviour
     {
         if (col.CompareTag("Player"))
         {
+            StartCoroutine(DestroyGrid());
             StartCoroutine(ChangeToScene());
         }
     }
@@ -26,5 +30,13 @@ public class ChangeToScene2 : MonoBehaviour
         yield return new WaitForSeconds(timeChange);
 
         _changeScene.ChangeLevel(index);
+    }
+
+    private IEnumerator DestroyGrid()
+    {
+        yield return new WaitForSeconds(timeDestroyGrid);
+        Destroy(grid);
+        lights.SetActive(true);
+
     }
 }
