@@ -152,6 +152,7 @@ public class EnemyAI : MonoBehaviour
     public LayerMask groundLayer;
     [SerializeField]
     private float _actualspeed;
+    AILerp lerp;
 
 
     public void Start()
@@ -162,7 +163,9 @@ public class EnemyAI : MonoBehaviour
         isInAir = false;
         isOnCoolDown = false;
         col = GetComponent<CapsuleCollider2D>();
-
+        col.enabled = true;
+        rb.bodyType = RigidbodyType2D.Dynamic;
+        lerp = GetComponent<AILerp>();
         InvokeRepeating("UpdatePath", 0f, pathUpdateSeconds);
     }
 
@@ -172,11 +175,13 @@ public class EnemyAI : MonoBehaviour
         {
             if (CalculateDistance() > 1.2f) 
             {
-                _actualspeed = speed * 3f; 
+                _actualspeed = speed * 5f;
+                lerp.speed = 2;
             }
-            else
+            else if (CalculateDistance() < 1)
             {
                 _actualspeed = speed;
+                lerp.speed = 1;
             }
            
             PathFollow();

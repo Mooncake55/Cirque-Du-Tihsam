@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class PlayerController : MonoBehaviour
     private float _moveInput;
     [SerializeField]
     private float _smoothMovement;
-    Vector2 _lastMove = Vector2.zero;
+    Vector3 _lastMove = Vector3.zero;
 
     private Rigidbody2D _rb;
     private Animator _animator;
@@ -39,28 +40,23 @@ public class PlayerController : MonoBehaviour
     const string PLAYER_IDLE = "IdleClown";
     const string PLAYER_FALL = "FallClown";
 
-    private CinemachineVirtualCamera _virtualCamera;
-    [SerializeField]
-    private float _lookAheadTime;
+    
 
     //public PauseMenu pauseMenu;
     //private bool _pause;
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         actualSpeed = moveSpeed;
+        Application.targetFrameRate = 60;
     }
 
-    // Update is called once per frame
-
-    private void Update()
-    {
-        CalculateOnGround();
-
+    public void Update() 
+    {        
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             actualSpeed = runSpeed;
@@ -69,11 +65,26 @@ public class PlayerController : MonoBehaviour
         {
             actualSpeed = moveSpeed;
         }
+        _moveInput = Input.GetAxis("Horizontal") * actualSpeed;
+    }
+
+
+    // Update is called once per frame
+
+    private void FixedUpdate()
+    {
+        CalculateOnGround();
+        Movement(_moveInput * Time.fixedDeltaTime);
+
         if (_onGround && Input.GetKey(KeyCode.Space))
         {
             Jump();
             _jump = true;
-        }
+        }  
+        
+        Flip();
+        Animations();
+
         //if (Input.GetKeyDown(KeyCode.Escape) && _pause == false)
         //{
         //    pauseMenu.Pause();
@@ -84,22 +95,22 @@ public class PlayerController : MonoBehaviour
         //    _pause = false;
         //}
     }
-    void FixedUpdate()
+    public void OnTriggerEnter2D(Collider2D col)
     {
-        Movement();
-        Flip();
-        Animations();
+        if (col.CompareTag("Enemy"))
+        {
+            Death();
+        }
     }
-    public void Movement()
+    public void Movement(float move)
     {
-        _moveInput = Input.GetAxis("Horizontal");
 
        // if(_lastXMovementInput > Mathf.Abs(moveInput))
         //{
           //  moveInput = 0;
         //}
-        Vector2 objetiveVelocity = new Vector2(_moveInput * actualSpeed, _rb.velocity.y);
-        _rb.velocity = Vector2.SmoothDamp(_rb.velocity, objetiveVelocity, ref _lastMove, _smoothMovement);
+        Vector3 objetiveVelocity = new Vector2(move, _rb.velocity.y);
+        _rb.velocity = Vector3.SmoothDamp(_rb.velocity, objetiveVelocity, ref _lastMove, _smoothMovement);
 
         _jumpVelocity = _rb.velocity.y;
     }
@@ -174,6 +185,10 @@ public class PlayerController : MonoBehaviour
                 ChangeAnimationState(PLAYER_FALL);
             }
         }
+    }
+    private void Death()
+    {
+        SceneManager.LoadScene(2);
     }
 }
 
