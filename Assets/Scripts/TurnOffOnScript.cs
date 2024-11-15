@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TurnOffOnScript : MonoBehaviour
 {
-    public TreantMovement script;
+    public EnemyAI script;
     public float time;
     public bool on;
     private void OnTriggerEnter2D(Collider2D col)
