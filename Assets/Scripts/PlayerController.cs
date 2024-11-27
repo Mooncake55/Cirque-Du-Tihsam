@@ -1,4 +1,5 @@
 using Cinemachine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
@@ -40,7 +41,7 @@ public class PlayerController : MonoBehaviour
     const string PLAYER_IDLE = "IdleClown";
     const string PLAYER_FALL = "FallClown";
 
-    
+    public GameObject checkpoint;
 
     //public PauseMenu pauseMenu;
     //private bool _pause;
@@ -189,6 +190,7 @@ public class PlayerController : MonoBehaviour
     private void Death()
     {
         SceneManager.LoadScene(2);
+        transform.position = checkpoint.transform.position;
     }
 }
 
