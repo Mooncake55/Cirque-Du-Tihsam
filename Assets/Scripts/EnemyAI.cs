@@ -175,8 +175,8 @@ public class EnemyAI : MonoBehaviour
         {
             if (CalculateDistance() > 1.2f) 
             {
-                _actualspeed = speed * 5f;
-                lerp.speed = 2;
+                _actualspeed = speed * 2f;
+                lerp.speed = 1.5f;
             }
             else if (CalculateDistance() < 1)
             {
